@@ -46,12 +46,12 @@ namespace AddressBook
                     case "6":
                         addressBook.DeletingAddressBook();
                         break;
-                    case "7":
-                        addressBook.SearchingByCity();
-                        break;
-                    case "8":
-                        addressBook.SearchingByState();
-                        break;
+                    //case "7":
+                    //    addressBook.SearchingByCity();
+                    //    break;
+                    //case "8":
+                    //    addressBook.SearchingByState();
+                    //    break;
                     default:
                         flag = false;
                         break;

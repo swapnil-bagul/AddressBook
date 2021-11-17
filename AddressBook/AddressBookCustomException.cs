@@ -21,5 +21,6 @@ namespace AddressBook
             this.type = type;
         }
 
+
     }
 }

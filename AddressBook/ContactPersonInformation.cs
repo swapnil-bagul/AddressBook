@@ -67,7 +67,6 @@ namespace AddressBook
             contactPersonalInformation.DisplayContactDetails();
 
         }
-
         /// <summary>
         /// Displaying contact details of one address book
         /// </summary>
@@ -87,7 +86,7 @@ namespace AddressBook
             ContactPersonInformation contact = new ContactPersonInformation();
         //using go to method for repeating the process
         //better process is using exceptions
-        addingDetailsAgainForEditing: Console.WriteLine("Please help us, first identify you");
+            addingDetailsAgainForEditing: Console.WriteLine("Please help us, first identify you");
             Console.WriteLine("Please enter your first name and phone no");
             string firstNm = Console.ReadLine();
             int editCheck = 0;
