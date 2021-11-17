@@ -37,6 +37,7 @@ namespace AddressBook
             this.zip = zip;
             this.phoneNo = phoneNo;
             this.eMail = eMail;
+
         }
     }
 }
