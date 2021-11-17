@@ -116,6 +116,7 @@ namespace AddressBook
                 ContactPersonInformation contactPersonInformation = dictionaryPair.Value;
                 contactPersonInformation.DisplayContactDetails();
             }
+        
         }
         /// <summary>
         /// Removing complete address book

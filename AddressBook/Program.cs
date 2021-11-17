@@ -26,7 +26,7 @@ namespace AddressBook
                 {
                     case "1":
                         addressBook.AddAdressBook();
-                        //addressBook.DisplayingAddressBooks(); 
+                        addressBook.DisplayingAddressBooks(); 
                         break;
                     case "2":
                         addressBook.AddContactsInAddressBook();
@@ -55,6 +55,7 @@ namespace AddressBook
                     default:
                         flag = false;
                         break;
+
                 }
             }
         }

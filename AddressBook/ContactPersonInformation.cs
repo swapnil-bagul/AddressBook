@@ -67,6 +67,7 @@ namespace AddressBook
             contactPersonalInformation.DisplayContactDetails();
 
         }
+
         /// <summary>
         /// Displaying contact details of one address book
         /// </summary>
