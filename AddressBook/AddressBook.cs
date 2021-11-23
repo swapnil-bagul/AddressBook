@@ -171,6 +171,7 @@ namespace AddressBook
             }
             Console.WriteLine("Data Appended in json file successfully");
         }
+
         public void ReadingContactDetailsFromJsonFile()
         {
             Console.WriteLine("**Reading data from json file**");
