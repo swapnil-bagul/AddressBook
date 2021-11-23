@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace AddressBook
 {
@@ -31,7 +33,10 @@ namespace AddressBook
             ContactPersonInformation contactPersonalInformation = new ContactPersonInformation();
             //able to add multiple contact details in one list
 
-            while (true)
+            Console.WriteLine("Enter How many contact you want to add");
+            int num = Convert.ToInt32(Console.ReadLine());
+
+            for ( int x=0; x<num; x++)
             {
                 //used goto method to call the method again
                 Repeat: Console.WriteLine("Please enter first name, last name, address, city, state, zip, phoneno and email");
@@ -83,6 +88,40 @@ namespace AddressBook
                 Console.WriteLine($"First Name : {contactPerson.firstName} || Last Name: {contactPerson.lastName} || Address: {contactPerson.address} || City: {contactPerson.city} || State: {contactPerson.state}|| zip: {contactPerson.zip} || Phone No: {contactPerson.phoneNo} || eMail: {contactPerson.eMail}");
             }
             Console.WriteLine("Displaying Contact Details Successful :DisplayingContactDetails()");
+        }
+
+        public void AddingContactDetailsinTextFile(string addressBookName)
+        {
+            string path = @"C:\Users\Swapnil Bagul\source\repos\AddressBook\AddressBook\Files\Data.txt";
+            if (File.Exists(path))
+            {
+
+                using (StreamWriter sr = File.AppendText(path))
+                {
+                    sr.WriteLine("The name of the address book is" + addressBookName);
+                    foreach (ContactDetails contactPerson in contactDetailsList)
+                    {
+                        sr.WriteLine($"First Name : {contactPerson.firstName} || Last Name: {contactPerson.lastName} || Address: {contactPerson.address} || City: {contactPerson.city} || State: {contactPerson.state}|| zip: {contactPerson.zip} || Phone No: {contactPerson.phoneNo} || eMail: {contactPerson.eMail}");
+                    }
+
+                    //string lines = File.ReadAllText(path);
+                    //Console.WriteLine(lines);
+                    sr.Close();
+                }
+            }
+        }
+        public void AddingContactDetailsInJsonFile(string addressBookName)
+        {
+            //giving path of the json file with the help of address book name
+            string pathforJson = @"C:\Users\Swapnil Bagul\source\repos\AddressBook\AddressBook\Files\Data.json";
+            //path for writing each json file, is converted into stream
+            StreamWriter writerJson = new StreamWriter(pathforJson);
+            //serializing data to write to json file
+            JsonSerializer serializer = new JsonSerializer();
+            JsonWriter sw = new JsonTextWriter(writerJson);
+            //passing list to serialize and convert to json
+            serializer.Serialize(sw, contactDetailsList);
+            writerJson.Close();
         }
         /// <summary>
         /// Edits contact details in address book

@@ -30,6 +30,8 @@ namespace AddressBook
                 Console.WriteLine("Enter 8 to search Contact Details using state");
                 Console.WriteLine("Enter 9 to view contact details and count with city");
                 Console.WriteLine("Enter 10 to view contact details and count with state");
+                Console.WriteLine("Enter 11 to write contact details into text file");
+                Console.WriteLine("Enter 12 to write contact details into json file");
                 Console.WriteLine("Enter any other key to exit");
 
 
@@ -73,6 +75,14 @@ namespace AddressBook
                         addressBook.GettingStateNames();
                         addressBook.CreatingStateDictionary();
                         addressBook.ViewingStateDictionary();
+                        break;
+                    case "11":
+                        addressBook.WritingAddressBookInTextFile();
+                        addressBook.ReadingContactDetailsFromTextFile();
+                        break;
+                    case "12":
+                        addressBook.WritingAddressBookInJsonFile();
+                        addressBook.ReadingContactDetailsFromJsonFile();
                         break;
                     default:
                         flag = false;

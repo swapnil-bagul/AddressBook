@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace AddressBook
 {
@@ -121,6 +123,77 @@ namespace AddressBook
                 contactPersonInformation.DisplayContactDetails();
             }
         }
+        /// Writing data into text file for each address book
+        /// </summary>
+        public void WritingAddressBookInTextFile()
+        {
+            //calling of addressbooks using foreach loop
+            foreach (KeyValuePair<string, ContactPersonInformation> dictionaryPair in addressBookMapper)
+            {
+                ContactPersonInformation contactPersonInformation = dictionaryPair.Value;
+                contactPersonInformation.AddingContactDetailsinTextFile(dictionaryPair.Key);
+            }
+            Console.WriteLine("Data Appended in text file");
+        }
+        /// <summary>
+        /// Reading all the data from text file created for writing
+        /// </summary>
+        public void ReadingContactDetailsFromTextFile()
+        {
+            //path from which data is read
+            string path = @"C:\Users\Swapnil Bagul\source\repos\AddressBook\AddressBook\Files\Data.txt";
+            Console.WriteLine("Showing all the data Writtern into the file by calling Stream Reader");
+            //if file exists, streamreader function from system.IO is called
+            //sr.ReadLine() will read each line from the text file and display on console until line is null.
+            if (File.Exists(path))
+            {
+                using (StreamReader sr = File.OpenText(path))
+                {
+                    string line = "";
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(line);
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// writing the contact details of address book into json file
+        /// calling method in contact person information which writes contact list of each address book in seperate json files
+        /// </summary>
+        public void WritingAddressBookInJsonFile()
+        {
+            //calling of addressbooks using foreach loop
+            foreach (KeyValuePair<string, ContactPersonInformation> dictionaryPair in addressBookMapper)
+            {
+                ContactPersonInformation contactPersonInformation = dictionaryPair.Value;
+                contactPersonInformation.AddingContactDetailsInJsonFile(dictionaryPair.Key);
+            }
+            Console.WriteLine("Data Appended in json file successfully");
+        }
+        public void ReadingContactDetailsFromJsonFile()
+        {
+            Console.WriteLine("**Reading data from json file**");
+            //iterating over each address book
+            foreach (KeyValuePair<string, ContactPersonInformation> addressBookName in addressBookMapper)
+            {
+                Console.WriteLine("The Name of the address book is:" + addressBookName.Key);
+                //defining path for each address book
+                string path = @"C:\Users\Swapnil Bagul\source\repos\AddressBook\AddressBook\Files\Data.json"; 
+                if (File.Exists(path))
+                {
+                    //deserializing object from json file, reading files and typecasting to list.
+                    List<ContactDetails> list = JsonConvert.DeserializeObject<List<ContactDetails>>(File.ReadAllText(path));
+                    Console.WriteLine("The Name of the address book is:" + addressBookName.Key);
+
+                    foreach (ContactDetails contactPerson in list)
+                    {
+                        Console.WriteLine($"First Name : {contactPerson.firstName} || Last Name: {contactPerson.lastName} || Address: {contactPerson.address} || City: {contactPerson.city} || State: {contactPerson.state}|| zip: {contactPerson.zip} || Phone No: {contactPerson.phoneNo} || eMail: {contactPerson.eMail}");
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Removing complete address book
         /// </summary>
